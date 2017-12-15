@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+let playerScore = 0;
+let compScore = 0;
+let gameNumber = 1;
+
+
+
+function computerPlay () {
+ x = Math.floor(Math.random()*3);
+ 
+  if (x === 1) {
+    return "rock";
+  } else if (x === 2) {
+      return "paper";
+  } else {
+      return "scissors";
+    }
+  }
+
+function playRound (playerSelection, computerPlay) {
+  
+  let x = playerSelection.toLowerCase();  
+  console.log("player" + playerSelection);
+  let y = computerPlay;
+  
+  if (y == "rock" && x == "paper") {
+    playerScore++;
+    return "You win! Paper beats rock";
+  } else if (y == "rock" && x == "scissors") {
+    compScore++;
+    return "You loose! Rock beats scissors";
+  } else if (y == "paper" && x == "rock") {
+    compScore++;
+    return "You loose! Paper beats rock";
+  } else if (y == "paper" && x == "scissors") {
+    playerScore++;
+    return "You win! Scissors beats paper";
+  } else if (y == "scissors" && x == "rock") {
+    playerScore++;
+    return "You win! Rock beats scissors";
+  } else if (y == "scissors" && x == "paper") {
+    compScore++;
+    return "You loose! Scissors beats paper";
+  } else {
+    return "It's a Tie!!!";
+  }
+
+}
+
+
+function game(){
+  while (gameNumber < 6) {
+    let playerSelection = window.prompt("Enter rock, paper, or scissors");
+    console.log(`You choosed ${playerSelection}`)
+    console.log(`Computer choosed ${computerPlay}`)
+    playRound(playerSelection, computerPlay);
+    console.log(`playerScore = ${playerScore},compScore = ${compScore}, gameNumber = ${gameNumber}`);
+    gameNumber++;
+  }
+  winner();
+}
+
+function winner(){
+  let winStatement;
+  
+  if (playerScore > compScore) {
+    winStatement = "You win!";
+  } else if (playerScore < compScore) {
+    winStatement = "You loose!"
+  } else {
+    winStatement = "It's a Tie!!"
+  }
+  console.log(`You Scored = ${playerScore}, the Computer Scored = ${compScore}, ${winStatement}`);
+}
+
+
+game();
+	</script>
+</body>
+</html>
